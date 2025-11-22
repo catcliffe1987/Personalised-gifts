@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cat's Personalised Gifts</title>
+  <meta
+    name="description"
+    content="Beautiful personalised gifts for all occasions – created with care and delivered from the UK."
+  />
+
+  <style>
+    :root {
+      --bg: #fdf9ff;
+      --primary: #e46fb1;
+      --primary-dark: #c45396;
+      --accent: #ffd26f;
+      --text: #2f2333;
+      --card: #ffffff;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #ffe9f5, #fdf9ff 40%, #f3f0ff);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(253, 249, 255, 0.9);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.8rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: conic-gradient(from 200deg, #e46fb1, #ffd26f, #7f8cff, #e46fb1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    .logo span {
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--text);
+      opacity: 0.8;
+      margin-left: 1rem;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    .btn-nav {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(228, 111, 177, 0.35);
+    }
+
+    .btn-nav:hover {
+      background: var(--primary-dark);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 2.2rem auto 1rem;
+      padding: 0 1.25rem 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: rgba(255, 255, 255, 0.85);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #e46fb1, #ffd26f);
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw + 1rem, 2.6rem);
+      line-height: 1.1;
+    }
+
+    h1 span.highlight {
+      background: linear-gradient(120deg, #e46fb1, #ffd26f);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.7rem 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 12px 22px rgba(228, 111, 177, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .hero-mini {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .hero-mini span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .hero-mini strong {
+      font-weight: 600;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #ffffff, #ffe9f5);
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+    }
+
+    .hero-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-bottom: 1.1rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.75rem;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffd26f, #e46fb1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 10px;
+      bottom: 12px;
+      font-size: 0.72rem;
+      opacity: 0.7;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 1.3rem;
+      max-width: 40rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 14px;
+      object-fit: cover;
+      max-height: 180px;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+    }
+
+    .price {
+      font-weight: 700;
+    }
+
+    .badge-soft {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: #fff4fb;
+      color: #b24382;
+    }
+
+    .steps {
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      background: white;
+    }
+
+    .step-body {
+      font-size: 0.86rem;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #ffe9f5, #fff6e0);
+      border-radius: var(--radius-xl);
+      padding: 1.4rem 1.2rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.3rem;
+    }
+
+    @media (max-width: 750px) {
+      .contact-box {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-text {
+      font-size: 0.9rem;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .contact-chip {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: white;
+      border: 1px dashed rgba(0, 0, 0, 0.12);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      font-size: 0.75rem;
+      text-align: center;
+      padding: 1rem 1.25rem 1.5rem;
+      opacity: 0.7;
+    }
+
+    a {
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-icon">C</div>
+        <span>Cat's Personalised Gifts</span>
+      </div>
+      <nav>
+        <a href="#featured">Gifts</a>
+        <a href="#how-to-order">How to order</a>
+        <a href="#contact">Contact</a>
+        <button class="btn-nav" onclick="scrollToContact()">Get a quote</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Personalised · UK based</span>
+        </div>
+
+        <h1>
+          Thoughtful <span class="highlight">personalised gifts</span><br />
+          for every occasion.
+        </h1>
+
+        <p class="hero-sub">
+          From mugs and cushions to keepsakes and photo gifts – I help you turn
+          special moments into unique presents, personalised in the UK and made
+          to feel truly “you”.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Browse &amp; request a quote</a>
+          <a href="#how-to-order" class="btn-ghost">How ordering works</a>
+        </div>
+
+        <div class="hero-mini">
+          <span><strong>Made to order</strong> • No minimum quantity</span>
+          <span>Perfect for birthdays · baby gifts · weddings · Christmas</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <p class="hero-card-title">A little about Cat’s Personalised Gifts</p>
+          <p class="hero-card-sub">
+            Friendly, UK-based personalised gifting using trusted suppliers,
+            with each order checked and organised by hand.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag">Custom text &amp; names</span>
+            <span class="tag">Photo gifts</span>
+            <span class="tag">One-offs &amp; small batches</span>
+          </div>
+
+          <div class="hero-card-footer">
+            <div class="hero-badge">
+              <div class="badge-icon">★</div>
+              <div>
+                <strong>Made for real people</strong><br />
+                Not just a big anonymous marketplace.
+              </div>
+            </div>
+            <div>
+              <strong>Based in the UK</strong><br />
+              Friendly, personal communication.
+            </div>
+          </div>
+
+          <div class="hero-note">Website powered by GitHub Pages</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured">
+      <h2 class="section-title">Popular personalised gift ideas</h2>
+      <p class="section-sub">
+        These are just example products to show what I can offer. When you get
+        in touch, tell me what you have in mind and I’ll confirm designs,
+        prices and delivery with you.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <img src="https://via.placeholder.com/600x400?text=Personalised+Mug" />
+          <h3 class="card-title">Personalised name mugs</h3>
+          <p class="card-text">
+            Custom mugs with names, messages or quotes – ideal for work desks,
+            birthdays or “just because”.
+          </p>
+          <div class="card-meta">
+            <span class="price">From £X.XX</span>
+            <span class="badge-soft">Add your wording</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://via.placeholder.com/600x400?text=Photo+Cushion" />
+          <h3 class="card-title">Photo cushions</h3>
+          <p class="card-text">
+            Turn favourite photos into cosy cushions – lovely for children,
+            couples and family memories.
+          </p>
+          <div class="card-meta">
+            <span class="price">From £X.XX</span>
+            <span class="badge-soft">Photo &amp; text</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://via.placeholder.com/600x400?text=Keepsake+Gift" />
+          <h3 class="card-title">Keepsake gifts</h3>
+          <p class="card-text">
+            Keyrings, plaques and small keepsakes – perfect for thank-yous,
+            new babies, teachers and more.
+          </p>
+          <div class="card-meta">
+            <span class="price">From £X.XX</span>
+            <span class="badge-soft">Small, thoughtful gifts</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="how-to-order">
+      <h2 class="section-title">How to order</h2>
+      <p class="section-sub">
+        I keep things simple and personal. There's no complicated checkout – we
+        chat about what you’d like, I confirm details and price, then your gift
+        is created to order.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-body">
+            <strong>Tell me what you’d like</strong><br />
+            Send a message with the type of gift and your ideas.
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-body">
+            <strong>I’ll confirm design &amp; price</strong><br />
+            I’ll check options with my UK supplier and confirm cost + delivery.
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-body">
+            <strong>Approve &amp; pay securely</strong><br />
+            Once you’re happy, we arrange payment (e.g. bank transfer).
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-body">
+            <strong>Your personalised gift is created</strong><br />
+            Your item is made to order and delivered to your address.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Request a quote or ask a question</h2>
+      <p class="section-sub">
+        Ready to chat about a personalised gift? Send a message and I’ll get
+        back to you.
+      </p>
+
+      <div class="contact-box">
+        <div>
+          <p class="contact-text">
+            You can update these contact details later – for now they're
+            placeholders.
+          </p>
+
+          <div style="margin-top: 0.9rem">
+            <p class="contact-label">Ways to contact:</p>
+            <div class="contact-links">
+              <span class="contact-chip">Email: yourname@example.com</span>
+              <span class="contact-chip">WhatsApp: 07xxx xxxxxx</span>
+              <span class="contact-chip">@yourinstagram</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <a
+            class="btn-primary"
+            href="mailto:yourname@example.com?subject=Personalised%20gift%20enquiry"
+            >Email me</a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Cat's Personalised Gifts · UK personalised gifts
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function scrollToContact() {
+      const el = document.getElementById("contact");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
+
